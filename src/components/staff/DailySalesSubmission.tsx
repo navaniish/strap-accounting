@@ -428,48 +428,48 @@ export const DailySalesSubmission: React.FC = () => {
             {/* Custom Upload Box - Stiff low height */}
             <div className="border border-dashed border-trust-300 rounded-xl p-2 text-center bg-trust-50/40 transition-all">
               {imagePreview ? (
-                /* Stiff Compact Light Theme Preview Box */
-                <div className="relative group rounded-xl overflow-hidden border border-slate-300 shadow-xs bg-slate-100 transition-all">
+                /* Spacious HD Proof Preview Box */
+                <div className="relative group rounded-xl overflow-hidden border border-slate-300 shadow-md bg-slate-950 transition-all">
                   <img
                     src={imagePreview}
                     alt="Sales proof preview"
-                    className="w-full h-36 object-cover rounded-lg group-hover:scale-101 transition-transform duration-200"
+                    className="w-full h-64 sm:h-72 object-contain bg-slate-950 rounded-lg group-hover:scale-[1.01] transition-transform duration-200"
                   />
                   
                   {/* Floating Overlay Badge */}
-                  <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-md border border-slate-300 text-slate-800 text-[9px] font-bold flex items-center space-x-1 shadow-xs">
-                    <Camera className="w-3 h-3 text-sapphire-600" />
-                    <span>PHOTO PROOF ATTACHED</span>
+                  <div className="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-xs px-3 py-1 rounded-lg border border-white/20 text-white text-xs font-bold flex items-center space-x-1.5 shadow-md">
+                    <Camera className="w-3.5 h-3.5 text-growth-400" />
+                    <span>PHOTO PROOF ATTACHED (HD)</span>
                   </div>
 
                   {/* Hover Delete Action */}
-                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center space-x-2 backdrop-blur-xs">
+                  <div className="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center space-x-2 backdrop-blur-xs">
                     <button
                       type="button"
                       onClick={() => setImagePreview('')}
-                      className="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-bold shadow-sm flex items-center space-x-1 transition-transform active:scale-95"
+                      className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold shadow-lg flex items-center space-x-1.5 transition-transform active:scale-95"
                       title="Remove image and recapture"
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
-                      <span>Retake Photo</span>
+                      <Trash2 className="w-4 h-4" />
+                      <span>Retake / Change Photo</span>
                     </button>
                   </div>
 
-                  <div className="p-2 bg-slate-50 border-t border-slate-200 text-[10px] text-slate-700 flex items-center justify-between gap-1">
-                    <span className="font-mono text-slate-800 truncate max-w-[180px] flex items-center gap-1">
-                      <FileCheck className="w-3 h-3 text-sapphire-600 shrink-0" />
+                  <div className="p-2.5 bg-slate-900/95 border-t border-slate-800 text-xs text-slate-200 flex items-center justify-between gap-1">
+                    <span className="font-mono text-white text-[11px] truncate max-w-[200px] flex items-center gap-1">
+                      <FileCheck className="w-3.5 h-3.5 text-growth-400 shrink-0" />
                       {imageFileName || 'Receipt_Proof.jpg'}
                     </span>
                     {compressionMetrics && (
-                      <span className="font-bold text-growth-700 bg-growth-100 border border-growth-300 px-2 py-0.2 rounded-full">
+                      <span className="font-bold text-growth-400 bg-growth-950/80 border border-growth-500/40 px-2.5 py-0.5 rounded-full text-[10px]">
                         {(compressionMetrics.origKb / 1024).toFixed(1)}MB → {compressionMetrics.compKb}KB
                       </span>
                     )}
                   </div>
                 </div>
               ) : showLiveCameraModal ? (
-                /* INLINE STIFF COMPACT LIVE CAMERA SCANNER (h-36 stiff compact height box) */
-                <div className="relative rounded-xl overflow-hidden bg-slate-900 border border-emerald-500/80 shadow-md h-36 w-full flex flex-col justify-between p-1.5">
+                /* INLINE SPACIOUS HIGH-CLARITY LIVE CAMERA SCANNER (h-64 sm:h-72 spacious view) */
+                <div className="relative rounded-xl overflow-hidden bg-slate-950 border-2 border-emerald-500/80 shadow-xl h-64 sm:h-72 w-full flex flex-col justify-between p-2">
                   <video
                     ref={videoRef}
                     autoPlay
@@ -479,25 +479,25 @@ export const DailySalesSubmission: React.FC = () => {
                   />
 
                   {/* Top Bar: Live Tag & Close Button */}
-                  <div className="relative z-10 flex items-center justify-between bg-slate-900/80 backdrop-blur-xs px-2.5 py-0.5 rounded-lg border border-white/10">
-                    <div className="flex items-center space-x-1 text-emerald-400 font-bold text-[10px]">
-                      <Video className="w-3 h-3 animate-pulse" />
-                      <span>Live Receipt Scanner</span>
+                  <div className="relative z-10 flex items-center justify-between bg-slate-950/80 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-white/15">
+                    <div className="flex items-center space-x-1.5 text-emerald-400 font-extrabold text-xs">
+                      <Video className="w-4 h-4 animate-pulse" />
+                      <span>Live HD Receipt Scanner</span>
                     </div>
                     <button
                       type="button"
                       onClick={stopLiveCamera}
-                      className="p-0.5 text-white/80 hover:text-white hover:bg-white/20 rounded-md transition-colors"
+                      className="p-1 text-white/80 hover:text-white hover:bg-white/20 rounded-md transition-colors"
                       title="Close Live Camera"
                     >
-                      <X className="w-3.5 h-3.5" />
+                      <X className="w-4 h-4" />
                     </button>
                   </div>
 
                   {cameraError ? (
-                    <div className="relative z-10 p-2 bg-rose-900/90 text-white rounded-lg text-center border border-rose-500/60 my-auto backdrop-blur-xs">
-                      <div className="text-[10px] text-rose-200">{cameraError}</div>
-                      <label className="inline-block mt-1 px-2.5 py-1 bg-emerald-500 text-slate-950 font-bold text-[10px] rounded-md cursor-pointer shadow-xs">
+                    <div className="relative z-10 p-3 bg-rose-900/90 text-white rounded-xl text-center border border-rose-500/60 my-auto backdrop-blur-xs">
+                      <div className="text-xs text-rose-200">{cameraError}</div>
+                      <label className="inline-block mt-2 px-3 py-1.5 bg-emerald-500 text-slate-950 font-bold text-xs rounded-lg cursor-pointer shadow-sm">
                         Use Native Camera
                         <input
                           type="file"
@@ -513,23 +513,23 @@ export const DailySalesSubmission: React.FC = () => {
                     </div>
                   ) : (
                     /* Dashed Target Overlay */
-                    <div className="relative z-10 border border-dashed border-emerald-400/80 rounded-lg h-10 flex items-center justify-center pointer-events-none">
-                      <span className="text-[9px] font-bold text-emerald-200 bg-slate-900/70 backdrop-blur-xs px-2 py-0.5 rounded-full">
-                        align receipt total
+                    <div className="relative z-10 border-2 border-dashed border-emerald-400/80 rounded-xl h-24 flex items-center justify-center pointer-events-none">
+                      <span className="text-xs font-bold text-emerald-200 bg-slate-950/80 backdrop-blur-xs px-3 py-1 rounded-full border border-emerald-500/40">
+                        Align Receipt Date &amp; Total Collection
                       </span>
                     </div>
                   )}
 
                   {/* Bottom Action Bar */}
                   {!cameraError && (
-                    <div className="relative z-10 flex items-center justify-between bg-slate-900/80 backdrop-blur-xs p-1 rounded-lg border border-white/10">
+                    <div className="relative z-10 flex items-center justify-between bg-slate-950/85 backdrop-blur-xs p-1.5 rounded-xl border border-white/15">
                       <button
                         type="button"
                         onClick={capturePhotoFromStream}
-                        className="w-full py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs rounded-md shadow-xs flex items-center justify-center space-x-1.5 active:scale-95 transition-all"
+                        className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs rounded-lg shadow-md flex items-center justify-center space-x-2 active:scale-95 transition-all"
                       >
-                        <Camera className="w-3.5 h-3.5 fill-slate-950" />
-                        <span>CAPTURE SNAP</span>
+                        <Camera className="w-4 h-4 fill-slate-950" />
+                        <span>CAPTURE HIGH CLARITY RECEIPT SNAP</span>
                       </button>
                     </div>
                   )}
