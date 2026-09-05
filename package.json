@@ -9,6 +9,8 @@
     "dev:admin": "VITE_APP_TARGET=ADMIN vite",
     "build": "tsc && vite build",
     "build:apk": "npm run build",
+    "apk:staff": "node scripts/build.js staff",
+    "apk:accounting": "node scripts/build.js accounting",
     "cap:sync": "npx cap sync",
     "lint": "tsc",
     "preview": "vite preview"
