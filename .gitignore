@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.pnpm-store
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+*.apk
+*.aab
+
+# Local JDK and Android SDK setup
+android-sdk/
+jdk-*/
+*.tar.gz
+*.zip
+
+# IDE & OS
+.DS_Store
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+# Android build cache
+android/.gradle/
+android/app/build/
+android/build/
+android/captures/

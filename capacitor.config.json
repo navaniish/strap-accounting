@@ -1,0 +1,24 @@
+{
+  "appId": "com.genz.retail.admin",
+  "appName": "Strap accounting",
+  "webDir": "dist",
+  "icon": "public/strap.png",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "GoogleAuth": {
+      "scopes": ["profile", "email"],
+      "clientId": "136722071275-ti30f765jle5u82nna3ihm1dbjqo6pp3.apps.googleusercontent.com",
+      "serverClientId": "136722071275-ti30f765jle5u82nna3ihm1dbjqo6pp3.apps.googleusercontent.com"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#0F172A",
+      "showSpinner": false,
+      "androidSplashResourceName": "splash"
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#0F172A"
+    }
+  }
+}

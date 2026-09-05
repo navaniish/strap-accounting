@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Strap accounting</string>
+    <string name="title_activity_main">Strap accounting</string>
+    <string name="package_name">com.genz.retail.admin</string>
+    <string name="custom_url_scheme">com.genz.retail.admin</string>
+    <string name="server_client_id">136722071275-ti30f765jle5u82nna3ihm1dbjqo6pp3.apps.googleusercontent.com</string>
+</resources>
