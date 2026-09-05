@@ -34,6 +34,12 @@ export const BusinessDashboard: React.FC = () => {
   const approvedTotal = todayEntries.filter(e => e.status === 'APPROVED').reduce((sum, e) => sum + e.amount, 0);
   const pendingTotal = todayEntries.filter(e => e.status === 'UNDER_REVIEW').reduce((sum, e) => sum + e.amount, 0);
 
+  // Overall All-Time Sales Collection Calculations
+  const overallSalesTotal = salesEntries.reduce((sum, e) => sum + e.amount, 0);
+  const overallCashTotal = salesEntries.filter(e => e.paymentMode === 'CASH' || !e.paymentMode).reduce((sum, e) => sum + e.amount, 0);
+  const overallOnlineTotal = salesEntries.filter(e => e.paymentMode === 'ONLINE').reduce((sum, e) => sum + e.amount, 0);
+  const overallMixedTotal = salesEntries.filter(e => e.paymentMode === 'MIXED').reduce((sum, e) => sum + e.amount, 0);
+
   const reportedShopIds = new Set(todayEntries.map(e => e.shopId));
   const reportsCompleted = reportedShopIds.size;
   const totalShopsCount = shops.length;
@@ -97,6 +103,37 @@ export const BusinessDashboard: React.FC = () => {
           >
             Export PDF Report
           </button>
+        </div>
+      </div>
+
+      {/* Compact Overall Amount Summary Banner */}
+      <div className="p-4 sm:p-5 bg-gradient-to-r from-trust-950 via-sapphire-950 to-trust-950 text-white rounded-2xl border border-sapphire-700/60 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex items-center space-x-3.5">
+          <div className="p-3 bg-growth-500/20 border border-growth-500/40 rounded-xl shrink-0">
+            <DollarSign className="w-6 h-6 text-growth-400" />
+          </div>
+          <div>
+            <div className="text-[11px] font-bold uppercase tracking-wider text-trust-300">Overall All-Time Total Sales Collection</div>
+            <div className="text-2xl sm:text-3xl font-black text-growth-400">₹{overallSalesTotal.toLocaleString('en-IN')}</div>
+          </div>
+        </div>
+
+        {/* Compact Cash / Online Split Badges */}
+        <div className="flex items-center gap-2.5 w-full md:w-auto overflow-x-auto text-xs pt-1 md:pt-0">
+          <div className="px-3.5 py-2 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0">
+            <div className="text-[10px] text-trust-400 font-bold uppercase">Cash Collection</div>
+            <div className="font-extrabold text-growth-400 text-sm">₹{overallCashTotal.toLocaleString('en-IN')}</div>
+          </div>
+          <div className="px-3.5 py-2 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0">
+            <div className="text-[10px] text-trust-400 font-bold uppercase">Online / UPI</div>
+            <div className="font-extrabold text-sapphire-300 text-sm">₹{overallOnlineTotal.toLocaleString('en-IN')}</div>
+          </div>
+          {overallMixedTotal > 0 && (
+            <div className="px-3.5 py-2 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0">
+              <div className="text-[10px] text-trust-400 font-bold uppercase">Mixed</div>
+              <div className="font-extrabold text-tier-300 text-sm">₹{overallMixedTotal.toLocaleString('en-IN')}</div>
+            </div>
+          )}
         </div>
       </div>
 
