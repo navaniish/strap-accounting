@@ -62,6 +62,7 @@ export const DailySalesSubmission: React.FC = () => {
   const [amount, setAmount] = useState<string>('');
   const [optionalNote, setOptionalNote] = useState<string>('');
   const [paymentMode, setPaymentMode] = useState<'CASH' | 'ONLINE' | 'MIXED'>('CASH');
+  const [historyFilter, setHistoryFilter] = useState<'ALL' | 'UNDER_REVIEW' | 'APPROVED' | 'CORRECTION_REQUIRED'>('ALL');
   const [imagePreview, setImagePreview] = useState<string>('');
   const [imageFileName, setImageFileName] = useState<string>('');
   const [compressionMetrics, setCompressionMetrics] = useState<{ origKb: number; compKb: number; pct: number } | null>(null);
@@ -236,6 +237,18 @@ export const DailySalesSubmission: React.FC = () => {
   // Recent Submissions by this staff
   const myRecentSubmissions = salesEntries.filter(e => e.staffId === ((currentStaff as any).id || (currentStaff as any).staffIdNumber) || e.businessId);
 
+  // Today's Staff Summary Calculations
+  const todayStr = new Date().toISOString().split('T')[0];
+  const myTodayEntries = myRecentSubmissions.filter(e => e.date === todayStr);
+  const myTodayTotal = myTodayEntries.reduce((sum, e) => sum + e.amount, 0);
+  const myTodayCash = myTodayEntries.filter(e => e.paymentMode === 'CASH' || !e.paymentMode).reduce((sum, e) => sum + e.amount, 0);
+  const myTodayOnline = myTodayEntries.filter(e => e.paymentMode === 'ONLINE').reduce((sum, e) => sum + e.amount, 0);
+
+  const filteredMySubmissions = myRecentSubmissions.filter(e => {
+    if (historyFilter === 'ALL') return true;
+    return e.status === historyFilter;
+  });
+
   return (
     <div className="max-w-5xl mx-auto space-y-8">
       
@@ -264,6 +277,35 @@ export const DailySalesSubmission: React.FC = () => {
             <div className="text-[10px] uppercase text-trust-400 font-bold tracking-wider">Today's Date</div>
             <div className="text-xs font-bold text-growth-400">{new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</div>
           </div>
+        </div>
+      </div>
+
+      {/* Staff Today's Collection Summary Strip */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="p-3.5 bg-growth-50/80 border border-growth-200 rounded-2xl space-y-1">
+          <div className="text-[10px] font-bold text-growth-700 uppercase tracking-wider">My Today's Total</div>
+          <div className="text-xl font-black text-growth-800">₹{myTodayTotal.toLocaleString('en-IN')}</div>
+          <div className="text-[10px] text-growth-600 font-semibold">{myTodayEntries.length} report(s) today</div>
+        </div>
+
+        <div className="p-3.5 bg-white border border-trust-200 rounded-2xl space-y-1 shadow-xs">
+          <div className="text-[10px] font-bold text-trust-600 uppercase tracking-wider">Cash Collection</div>
+          <div className="text-lg font-extrabold text-trust-900">₹{myTodayCash.toLocaleString('en-IN')}</div>
+          <div className="text-[10px] text-trust-400 font-medium">Physical counter cash</div>
+        </div>
+
+        <div className="p-3.5 bg-sapphire-50/80 border border-sapphire-200 rounded-2xl space-y-1">
+          <div className="text-[10px] font-bold text-sapphire-700 uppercase tracking-wider">Online / UPI</div>
+          <div className="text-lg font-extrabold text-sapphire-900">₹{myTodayOnline.toLocaleString('en-IN')}</div>
+          <div className="text-[10px] text-sapphire-600 font-medium">Digital QR & Card</div>
+        </div>
+
+        <div className="p-3.5 bg-white border border-trust-200 rounded-2xl space-y-1 shadow-xs">
+          <div className="text-[10px] font-bold text-trust-500 uppercase tracking-wider">Assigned Branch</div>
+          <div className="text-sm font-extrabold text-trust-900 truncate">
+            {assignedShops.length > 0 ? assignedShops[0].name : 'Primary Store'}
+          </div>
+          <div className="text-[10px] text-trust-400 font-medium">{assignedShops.length} Store(s) Assigned</div>
         </div>
       </div>
 
@@ -628,17 +670,45 @@ export const DailySalesSubmission: React.FC = () => {
         <div className="lg:col-span-5 space-y-6">
           
           <div className="bg-white p-6 rounded-2xl border border-trust-200 shadow-psychology space-y-4">
-            <h3 className="font-bold text-trust-900 text-base flex items-center justify-between">
-              <span>My Submission History</span>
-              <span className="text-xs font-mono font-normal text-trust-500">{myRecentSubmissions.length} records</span>
-            </h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-trust-100 pb-3">
+              <h3 className="font-bold text-trust-900 text-base">My Submission History</h3>
+              <span className="text-xs font-mono font-normal text-trust-500">{filteredMySubmissions.length} of {myRecentSubmissions.length} records</span>
+            </div>
+
+            {/* Quick Status Filter Pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+              {[
+                { key: 'ALL', label: 'All' },
+                { key: 'UNDER_REVIEW', label: 'Review' },
+                { key: 'APPROVED', label: 'Approved' },
+                { key: 'CORRECTION_REQUIRED', label: 'Needs Fix' }
+              ].map(tab => (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setHistoryFilter(tab.key as any)}
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all shrink-0 ${
+                    historyFilter === tab.key
+                      ? 'bg-trust-900 text-white shadow-xs'
+                      : 'bg-trust-100 text-trust-600 hover:bg-trust-200'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
             <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1">
-              {myRecentSubmissions.map(entry => {
-                const statusBadgeClass = 
-                  entry.status === 'APPROVED' ? 'badge-growth' :
-                  entry.status === 'CORRECTION_REQUIRED' ? 'badge-urgency' :
-                  'badge-focus';
+              {filteredMySubmissions.length === 0 ? (
+                <div className="p-6 text-center text-trust-400 text-xs bg-trust-50/50 rounded-xl border border-dashed border-trust-200">
+                  No submissions found for selected filter.
+                </div>
+              ) : (
+                filteredMySubmissions.map(entry => {
+                  const statusBadgeClass = 
+                    entry.status === 'APPROVED' ? 'badge-growth' :
+                    entry.status === 'CORRECTION_REQUIRED' ? 'badge-urgency' :
+                    'badge-focus';
 
                 return (
                   <div key={entry.id} className="p-3.5 bg-trust-50 border border-trust-200 rounded-xl space-y-2">
@@ -698,7 +768,7 @@ export const DailySalesSubmission: React.FC = () => {
                     </div>
                   </div>
                 );
-              })}
+              }))}
             </div>
           </div>
 
