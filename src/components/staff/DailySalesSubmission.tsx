@@ -27,7 +27,8 @@ import {
   Share2,
   MessageCircle,
   CreditCard,
-  Wallet
+  Wallet,
+  User
 } from 'lucide-react';
 
 export const DailySalesSubmission: React.FC = () => {
@@ -256,7 +257,15 @@ export const DailySalesSubmission: React.FC = () => {
       <div className="bg-gradient-to-r from-sapphire-900 via-trust-900 to-sapphire-950 text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-sapphire-800/80 flex flex-row items-center justify-between gap-3">
         <div>
           <h1 className="text-base sm:text-xl font-black tracking-tight text-white">Submit Daily Shop Sales</h1>
-          <p className="text-[11px] text-sapphire-200 mt-0.5 font-medium">Store closing entry & daily collection report</p>
+          <div className="flex items-center space-x-2 mt-1 text-[11px] text-sapphire-200 font-medium">
+            <span className="bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-md border border-emerald-400/30 font-extrabold flex items-center gap-1">
+              <User className="w-3 h-3 text-emerald-400" />
+              <span>Staff: {currentStaff?.name || currentUser?.name || 'Staff Member'}</span>
+            </span>
+            {(currentStaff?.phone || currentStaff?.staffIdNumber || currentUser?.staffIdNumber) && (
+              <span className="font-mono text-sapphire-300">({currentStaff?.phone || currentStaff?.staffIdNumber || currentUser?.staffIdNumber})</span>
+            )}
+          </div>
         </div>
 
         <div className="flex items-center space-x-2 shrink-0">
@@ -346,10 +355,16 @@ export const DailySalesSubmission: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="lg:col-span-7 bg-white p-4 sm:p-5 rounded-xl border border-trust-200 shadow-xs space-y-3.5">
           
-          <h2 className="text-sm font-extrabold text-trust-900 border-b border-trust-100 pb-2 flex items-center space-x-2">
-            <Store className="w-4 h-4 text-sapphire-600" />
-            <span>Daily Report Form</span>
-          </h2>
+          <div className="flex items-center justify-between border-b border-trust-100 pb-2">
+            <h2 className="text-sm font-extrabold text-trust-900 flex items-center space-x-2">
+              <Store className="w-4 h-4 text-sapphire-600" />
+              <span>Daily Report Form</span>
+            </h2>
+            <div className="text-[11px] font-bold text-sapphire-800 bg-sapphire-50 px-2.5 py-1 rounded-lg border border-sapphire-200 flex items-center space-x-1.5">
+              <User className="w-3.5 h-3.5 text-sapphire-600" />
+              <span>Staff: <span className="font-black text-trust-900">{currentStaff?.name || currentUser?.name || 'Staff Member'}</span></span>
+            </div>
+          </div>
 
           {/* Date & Shop Select */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
