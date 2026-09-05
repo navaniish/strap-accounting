@@ -27,7 +27,7 @@ export const BusinessDashboard: React.FC = () => {
   const { currentBusiness, shops, salesEntries, setActiveTab } = useApp();
 
   const todayStr = new Date().toISOString().split('T')[0];
-  const todayEntries = salesEntries.filter(e => e.date === todayStr || salesEntries.length > 0);
+  const todayEntries = salesEntries.filter(e => e.date === todayStr);
 
   // Dynamic Sales Calculations
   const todaySalesTotal = todayEntries.reduce((sum, e) => sum + e.amount, 0);
