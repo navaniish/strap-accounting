@@ -535,22 +535,22 @@ export const DailySalesSubmission: React.FC = () => {
                   )}
                 </div>
               ) : (
-                <div className="py-2 space-y-2">
-                  <div className="flex flex-row items-center justify-center gap-2">
+                <div className="py-2 space-y-2.5">
+                  <div className="flex flex-col space-y-2 w-full">
                     {/* Live Viewfinder */}
                     <button
                       type="button"
                       onClick={startLiveCamera}
-                      className="px-3 py-1.5 bg-sapphire-600 hover:bg-sapphire-700 text-white font-bold text-xs rounded-lg shadow-xs transition-all flex items-center justify-center space-x-1.5"
+                      className="w-full py-2 px-3 bg-sapphire-600 hover:bg-sapphire-700 active:bg-sapphire-800 text-white font-extrabold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center space-x-2 active:scale-[0.98]"
                     >
-                      <Video className="w-3.5 h-3.5 text-growth-300" />
-                      <span>Live Camera</span>
+                      <Video className="w-4 h-4 text-growth-300" />
+                      <span>Live Camera Viewfinder</span>
                     </button>
 
                     {/* Snapshot */}
-                    <label className="px-3 py-1.5 bg-growth-600 hover:bg-growth-700 text-white font-bold text-xs rounded-lg shadow-xs cursor-pointer transition-all flex items-center justify-center space-x-1.5">
-                      <Camera className="w-3.5 h-3.5" />
-                      <span>Snapshot</span>
+                    <label className="w-full py-2 px-3 bg-growth-600 hover:bg-growth-700 active:bg-growth-800 text-white font-extrabold text-xs rounded-xl shadow-xs cursor-pointer transition-all flex items-center justify-center space-x-2 active:scale-[0.98]">
+                      <Camera className="w-4 h-4 text-white" />
+                      <span>Take Instant Photo Snapshot</span>
                       <input
                         type="file"
                         accept="image/*"
@@ -561,9 +561,9 @@ export const DailySalesSubmission: React.FC = () => {
                     </label>
 
                     {/* Gallery */}
-                    <label className="px-3 py-1.5 bg-trust-100 hover:bg-trust-200 text-trust-800 font-bold text-xs rounded-lg border border-trust-300 cursor-pointer transition-all flex items-center justify-center space-x-1.5">
-                      <Upload className="w-3.5 h-3.5 text-trust-600" />
-                      <span>Gallery</span>
+                    <label className="w-full py-2 px-3 bg-trust-100 hover:bg-trust-200 text-trust-800 font-extrabold text-xs rounded-xl border border-trust-300 cursor-pointer transition-all flex items-center justify-center space-x-2 active:scale-[0.98]">
+                      <Upload className="w-4 h-4 text-trust-600" />
+                      <span>Upload Photo from Gallery</span>
                       <input
                         type="file"
                         accept="image/*"
