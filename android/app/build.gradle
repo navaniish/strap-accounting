@@ -16,6 +16,19 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    flavorDimensions "appTarget"
+    productFlavors {
+        admin {
+            dimension "appTarget"
+            applicationId "com.genz.retail.admin"
+            resValue "string", "app_name", "Strap Admin"
+        }
+        staff {
+            dimension "appTarget"
+            applicationId "com.genz.retail.staff"
+            resValue "string", "app_name", "Strap Staff"
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
