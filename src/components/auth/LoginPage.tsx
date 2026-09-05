@@ -476,15 +476,7 @@ export const LoginPage: React.FC = () => {
                   <div className="flex-grow border-t border-trust-200 dark:border-slate-800"></div>
                 </div>
 
-                {/* Google renders its real button here */}
-                <div
-                  ref={googleBtnRef}
-                  id="google-signin-btn"
-                  className="w-full flex justify-center min-h-[44px]"
-                  onClick={() => setGoogleError('')}
-                />
-
-                {/* Custom Google Button Fallback */}
+                {/* Single Clean Unified Google Sign-In Button */}
                 <button
                   type="button"
                   onClick={handleOfficialGoogleSignIn}
@@ -502,7 +494,7 @@ export const LoginPage: React.FC = () => {
                 {/* 🔴 Red Alert — ONLY for unregistered Google accounts */}
                 {googleError && (
                   <div
-                    className="flex items-start gap-3 p-4 rounded-2xl border text-left"
+                    className="flex items-start gap-3 p-4 rounded-2xl border text-left animate-fade-in"
                     style={{ backgroundColor: '#FEE2E2', borderColor: '#EF4444', color: '#991B1B' }}
                   >
                     <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" style={{ color: '#EF4444' }} />
