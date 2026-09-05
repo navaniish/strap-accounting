@@ -24,10 +24,11 @@ export const SalesCalendar: React.FC = () => {
 
   type ZoomLevel = 'YEAR' | 'MONTH' | 'DAY' | 'SHOP_DETAIL';
 
+  const todayDate = new Date();
   const [zoomLevel, setZoomLevel] = useState<ZoomLevel>('MONTH');
-  const [selectedYear, setSelectedYear] = useState<number>(2026);
-  const [selectedMonth, setSelectedMonth] = useState<number>(7); // 7 = August
-  const [selectedDay, setSelectedDay] = useState<number>(14);
+  const [selectedYear, setSelectedYear] = useState<number>(todayDate.getFullYear());
+  const [selectedMonth, setSelectedMonth] = useState<number>(todayDate.getMonth()); // Dynamic real-time current month (e.g. Sept = 8, Oct = 9)
+  const [selectedDay, setSelectedDay] = useState<number>(todayDate.getDate());
   const [selectedShopId, setSelectedShopId] = useState<string>('ALL');
   const [selectedStaffId, setSelectedStaffId] = useState<string>('ALL');
   const [selectedStatus, setSelectedStatus] = useState<string>('ALL');
@@ -73,10 +74,11 @@ export const SalesCalendar: React.FC = () => {
 
   const handleResetZoom = () => {
     setMobileZoomPercent(125);
+    const now = new Date();
     triggerZoomTransition('MONTH', () => {
-      setSelectedYear(2026);
-      setSelectedMonth(7);
-      setSelectedDay(14);
+      setSelectedYear(now.getFullYear());
+      setSelectedMonth(now.getMonth());
+      setSelectedDay(now.getDate());
     });
   };
 
@@ -443,8 +445,16 @@ export const SalesCalendar: React.FC = () => {
             <div className="p-4 bg-trust-900 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-trust-300">
               <div className="flex items-center space-x-3">
                 <button
-                  onClick={() => setSelectedMonth(prev => Math.max(0, prev - 1))}
+                  onClick={() => {
+                    if (selectedMonth === 0) {
+                      setSelectedMonth(11);
+                      setSelectedYear(prev => prev - 1);
+                    } else {
+                      setSelectedMonth(prev => prev - 1);
+                    }
+                  }}
                   className="p-1.5 rounded bg-trust-800 hover:bg-trust-700 text-white"
+                  title="Previous Month"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
@@ -452,8 +462,16 @@ export const SalesCalendar: React.FC = () => {
                   {monthNames[selectedMonth].toUpperCase()} {selectedYear} MATRIX
                 </h2>
                 <button
-                  onClick={() => setSelectedMonth(prev => Math.min(11, prev + 1))}
+                  onClick={() => {
+                    if (selectedMonth === 11) {
+                      setSelectedMonth(0);
+                      setSelectedYear(prev => prev + 1);
+                    } else {
+                      setSelectedMonth(prev => prev + 1);
+                    }
+                  }}
                   className="p-1.5 rounded bg-trust-800 hover:bg-trust-700 text-white"
+                  title="Next Month"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
