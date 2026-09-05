@@ -252,14 +252,14 @@ export const DailySalesSubmission: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto space-y-4">
       
-      {/* Header Banner - Clean Light Theme */}
-      <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-trust-200 shadow-xs flex flex-row items-center justify-between gap-3">
+      {/* Top Blue Header Banner */}
+      <div className="bg-gradient-to-r from-sapphire-900 via-trust-900 to-sapphire-950 text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-sapphire-800/80 flex flex-row items-center justify-between gap-3">
         <div>
-          <h1 className="text-base sm:text-lg font-extrabold text-trust-900 tracking-tight">Submit Daily Shop Sales</h1>
-          <p className="text-[11px] text-trust-500">Quick closing report entry for staff</p>
+          <h1 className="text-base sm:text-xl font-black tracking-tight text-white">Submit Daily Shop Sales</h1>
+          <p className="text-[11px] text-sapphire-200 mt-0.5 font-medium">Store closing entry & daily collection report</p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 shrink-0">
           <button
             type="button"
             onClick={async () => {
@@ -267,15 +267,15 @@ export const DailySalesSubmission: React.FC = () => {
               await refreshData();
               setTimeout(() => setIsRefreshingData(false), 600);
             }}
-            className="px-3 py-1.5 bg-trust-100 hover:bg-trust-200 text-trust-800 border border-trust-300 rounded-lg text-xs font-bold flex items-center space-x-1 shadow-xs transition-all active:scale-95"
+            className="px-3 py-1.5 bg-sapphire-800/90 hover:bg-sapphire-700 text-white border border-sapphire-600/60 rounded-xl text-xs font-extrabold flex items-center space-x-1.5 shadow-md transition-all active:scale-95"
           >
-            <RefreshCw className={`w-3.5 h-3.5 text-sapphire-600 ${isRefreshingData ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 text-blue-300 ${isRefreshingData ? 'animate-spin' : ''}`} />
             <span>Sync</span>
           </button>
 
-          <div className="bg-sapphire-50 border border-sapphire-200 px-2.5 py-1 rounded-lg text-right shrink-0">
-            <div className="text-[9px] uppercase text-sapphire-600 font-bold tracking-wider">Today</div>
-            <div className="text-xs font-extrabold text-sapphire-900">{new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</div>
+          <div className="bg-sapphire-950/80 backdrop-blur border border-sapphire-700/70 px-3 py-1.5 rounded-xl text-right shrink-0 shadow-inner">
+            <div className="text-[9px] uppercase text-sapphire-300 font-bold tracking-wider">Today's Date</div>
+            <div className="text-xs font-black text-emerald-400">{new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</div>
           </div>
         </div>
       </div>
