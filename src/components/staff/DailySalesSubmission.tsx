@@ -254,7 +254,7 @@ export const DailySalesSubmission: React.FC = () => {
     <div className="max-w-5xl mx-auto space-y-4">
       
       {/* Top Blue Header Banner */}
-      <div className="bg-gradient-to-r from-sapphire-900 via-trust-900 to-sapphire-950 text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-sapphire-800/80 flex flex-row items-center justify-between gap-3">
+      <div className="bg-gradient-to-r from-sapphire-900 via-trust-900 to-sapphire-950 text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-sapphire-800/80 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5">
         <div>
           <h1 className="text-base sm:text-xl font-black tracking-tight text-white">Submit Daily Shop Sales</h1>
           <div className="flex items-center space-x-2 mt-1 text-[11px] text-sapphire-200 font-medium">
@@ -290,31 +290,31 @@ export const DailySalesSubmission: React.FC = () => {
       </div>
 
       {/* Staff Today's Collection Summary Strip */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-        <div className="p-2.5 bg-growth-50/90 border border-growth-200 rounded-xl space-y-0.5">
-          <div className="text-[9px] font-bold text-growth-700 uppercase tracking-wider">My Today Total</div>
-          <div className="text-base font-black text-growth-800">₹{myTodayTotal.toLocaleString('en-IN')}</div>
-          <div className="text-[9px] text-growth-600 font-semibold">{myTodayEntries.length} report(s) today</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="p-2.5 bg-growth-50/90 border border-growth-200 rounded-xl space-y-0.5 min-w-0">
+          <div className="text-[9px] font-bold text-growth-700 uppercase tracking-wider truncate">My Today Total</div>
+          <div className="text-base font-black text-growth-800 truncate">₹{myTodayTotal.toLocaleString('en-IN')}</div>
+          <div className="text-[9px] text-growth-600 font-semibold truncate">{myTodayEntries.length} report(s) today</div>
         </div>
 
-        <div className="p-2.5 bg-white border border-trust-200 rounded-xl space-y-0.5 shadow-xs">
-          <div className="text-[9px] font-bold text-trust-600 uppercase tracking-wider">Cash Collection</div>
-          <div className="text-base font-extrabold text-trust-900">₹{myTodayCash.toLocaleString('en-IN')}</div>
-          <div className="text-[9px] text-trust-400 font-medium">Counter cash</div>
+        <div className="p-2.5 bg-white border border-trust-200 rounded-xl space-y-0.5 shadow-xs min-w-0">
+          <div className="text-[9px] font-bold text-trust-600 uppercase tracking-wider truncate">Cash Collection</div>
+          <div className="text-base font-extrabold text-trust-900 truncate">₹{myTodayCash.toLocaleString('en-IN')}</div>
+          <div className="text-[9px] text-trust-400 font-medium truncate">Counter cash</div>
         </div>
 
-        <div className="p-2.5 bg-sapphire-50/90 border border-sapphire-200 rounded-xl space-y-0.5">
-          <div className="text-[9px] font-bold text-sapphire-700 uppercase tracking-wider">Online / UPI</div>
-          <div className="text-base font-extrabold text-sapphire-900">₹{myTodayOnline.toLocaleString('en-IN')}</div>
-          <div className="text-[9px] text-sapphire-600 font-medium">Digital QR/UPI</div>
+        <div className="p-2.5 bg-sapphire-50/90 border border-sapphire-200 rounded-xl space-y-0.5 min-w-0">
+          <div className="text-[9px] font-bold text-sapphire-700 uppercase tracking-wider truncate">Online / UPI</div>
+          <div className="text-base font-extrabold text-sapphire-900 truncate">₹{myTodayOnline.toLocaleString('en-IN')}</div>
+          <div className="text-[9px] text-sapphire-600 font-medium truncate">Digital QR/UPI</div>
         </div>
 
-        <div className="p-2.5 bg-white border border-trust-200 rounded-xl space-y-0.5 shadow-xs">
-          <div className="text-[9px] font-bold text-trust-500 uppercase tracking-wider">Assigned Branch</div>
+        <div className="p-2.5 bg-white border border-trust-200 rounded-xl space-y-0.5 shadow-xs min-w-0">
+          <div className="text-[9px] font-bold text-trust-500 uppercase tracking-wider truncate">Assigned Branch</div>
           <div className="text-xs font-extrabold text-trust-900 truncate">
             {assignedShops.length > 0 ? assignedShops[0].name : 'Primary Store'}
           </div>
-          <div className="text-[9px] text-trust-400 font-medium">{assignedShops.length} Store Assigned</div>
+          <div className="text-[9px] text-trust-400 font-medium truncate">{assignedShops.length} Store Assigned</div>
         </div>
       </div>
 

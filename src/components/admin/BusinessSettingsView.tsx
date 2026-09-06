@@ -80,7 +80,7 @@ export const BusinessSettingsView: React.FC = () => {
         </div>
       )}
 
-      <form onSubmit={handleSave} className="bg-white p-8 rounded-2xl border border-trust-200 shadow-psychology space-y-6">
+      <form onSubmit={handleSave} className="bg-white p-5 sm:p-8 rounded-2xl border border-trust-200 shadow-psychology space-y-6">
         <h2 className="font-bold text-trust-900 text-base border-b border-trust-100 pb-3">Business Settings</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

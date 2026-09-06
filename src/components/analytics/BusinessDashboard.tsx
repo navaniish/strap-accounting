@@ -77,18 +77,18 @@ export const BusinessDashboard: React.FC = () => {
     <div className="max-w-6xl mx-auto space-y-8">
 
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-trust-900 via-sapphire-900 to-trust-900 text-white p-6 sm:p-8 rounded-2xl shadow-xl border border-trust-800 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div className="bg-gradient-to-r from-trust-900 via-sapphire-900 to-trust-900 text-white p-5 sm:p-8 rounded-2xl shadow-xl border border-trust-800 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Operational Business Metrics</h1>
+          <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight">Operational Business Metrics</h1>
           <p className="text-trust-300 text-xs sm:text-sm mt-1">
             Real-time operational overview for <span className="font-bold text-white">{currentBusiness.name}</span> across {totalShopsCount} shops.
           </p>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
           <button
             onClick={() => setActiveTab('verification')}
-            className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold rounded-xl shadow-lg transition-all flex items-center space-x-2 border border-emerald-500"
+            className="w-full sm:w-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 border border-emerald-500"
           >
             <span>Review & Approve Submissions</span>
             {salesEntries.filter(e => e.status === 'UNDER_REVIEW').length > 0 && (
@@ -99,39 +99,39 @@ export const BusinessDashboard: React.FC = () => {
           </button>
           <button
             onClick={() => setActiveTab('reports')}
-            className="px-4 py-2.5 bg-trust-800 hover:bg-trust-700 text-white text-xs font-bold rounded-xl border border-trust-700 transition-all hidden sm:block"
+            className="w-full sm:w-auto px-4 py-2.5 bg-trust-800 hover:bg-trust-700 text-white text-xs font-bold rounded-xl border border-trust-700 transition-all flex items-center justify-center space-x-1.5"
           >
-            Export PDF Report
+            <span>Export PDF Report</span>
           </button>
         </div>
       </div>
 
       {/* Compact Overall Amount Summary Banner */}
       <div className="p-4 sm:p-5 bg-gradient-to-r from-trust-950 via-sapphire-950 to-trust-950 text-white rounded-2xl border border-sapphire-700/60 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center space-x-3.5">
+        <div className="flex items-center space-x-3.5 min-w-0">
           <div className="p-3 bg-growth-500/20 border border-growth-500/40 rounded-xl shrink-0">
             <DollarSign className="w-6 h-6 text-growth-400" />
           </div>
-          <div>
-            <div className="text-[11px] font-bold uppercase tracking-wider text-trust-300">Overall All-Time Total Sales Collection</div>
-            <div className="text-2xl sm:text-3xl font-black text-growth-400">₹{overallSalesTotal.toLocaleString('en-IN')}</div>
+          <div className="min-w-0">
+            <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-trust-300 truncate">Overall All-Time Total Sales Collection</div>
+            <div className="text-xl sm:text-3xl font-black text-growth-400 truncate">₹{overallSalesTotal.toLocaleString('en-IN')}</div>
           </div>
         </div>
 
-        {/* Compact Cash / Online Split Badges */}
-        <div className="flex items-center gap-2.5 w-full md:w-auto overflow-x-auto text-xs pt-1 md:pt-0">
-          <div className="px-3.5 py-2 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0">
-            <div className="text-[10px] text-trust-400 font-bold uppercase">Cash Collection</div>
-            <div className="font-extrabold text-growth-400 text-sm">₹{overallCashTotal.toLocaleString('en-IN')}</div>
+        {/* Compact Cash / Online Split Badges - Mobile Horizontal Scroll */}
+        <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto text-xs pb-1 md:pb-0 scrollbar-none">
+          <div className="px-3 py-1.5 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0 min-w-[100px]">
+            <div className="text-[9px] text-trust-400 font-bold uppercase truncate">Cash Collection</div>
+            <div className="font-extrabold text-growth-400 text-xs sm:text-sm truncate">₹{overallCashTotal.toLocaleString('en-IN')}</div>
           </div>
-          <div className="px-3.5 py-2 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0">
-            <div className="text-[10px] text-trust-400 font-bold uppercase">Online / UPI</div>
-            <div className="font-extrabold text-sapphire-300 text-sm">₹{overallOnlineTotal.toLocaleString('en-IN')}</div>
+          <div className="px-3 py-1.5 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0 min-w-[100px]">
+            <div className="text-[9px] text-trust-400 font-bold uppercase truncate">Online / UPI</div>
+            <div className="font-extrabold text-sapphire-300 text-xs sm:text-sm truncate">₹{overallOnlineTotal.toLocaleString('en-IN')}</div>
           </div>
           {overallMixedTotal > 0 && (
-            <div className="px-3.5 py-2 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0">
-              <div className="text-[10px] text-trust-400 font-bold uppercase">Mixed</div>
-              <div className="font-extrabold text-tier-300 text-sm">₹{overallMixedTotal.toLocaleString('en-IN')}</div>
+            <div className="px-3 py-1.5 bg-trust-900/80 border border-trust-700 rounded-xl shrink-0 min-w-[90px]">
+              <div className="text-[9px] text-trust-400 font-bold uppercase truncate">Mixed</div>
+              <div className="font-extrabold text-tier-300 text-xs sm:text-sm truncate">₹{overallMixedTotal.toLocaleString('en-IN')}</div>
             </div>
           )}
         </div>

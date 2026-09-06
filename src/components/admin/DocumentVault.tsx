@@ -195,12 +195,12 @@ export const DocumentVault: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto shrink-0">
           {isAdmin && (
             <button
               type="button"
               onClick={() => setShowCAExportModal(true)}
-              className="px-3.5 py-2.5 bg-trust-100 text-trust-800 text-xs font-bold rounded-xl hover:bg-trust-200 transition-colors flex items-center space-x-2 border border-trust-200"
+              className="px-3.5 py-2.5 bg-trust-100 text-trust-800 text-xs font-bold rounded-xl hover:bg-trust-200 transition-colors flex items-center justify-center space-x-2 border border-trust-200"
             >
               <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
               <span>Export CA Audit Zip</span>
@@ -213,7 +213,7 @@ export const DocumentVault: React.FC = () => {
               setDocCategory(isStaff ? 'INVOICE' : 'LICENSE');
               setShowUploadModal(true);
             }}
-            className="px-4 py-2.5 bg-gold-500 text-trust-950 font-bold text-xs rounded-xl shadow-lg hover:bg-gold-400 transition-all flex items-center space-x-2"
+            className="px-4 py-2.5 bg-gold-500 text-trust-950 font-bold text-xs rounded-xl shadow-lg hover:bg-gold-400 transition-all flex items-center justify-center space-x-2 w-full sm:w-auto"
           >
             <Upload className="w-4 h-4" />
             <span>{isStaff ? 'Upload Bill / Receipt' : 'Upload Document'}</span>

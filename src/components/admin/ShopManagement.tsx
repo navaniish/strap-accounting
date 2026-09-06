@@ -95,9 +95,9 @@ export const ShopManagement: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       
-      <div className="bg-white p-6 rounded-2xl border border-trust-200 shadow-psychology flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-trust-200 shadow-psychology flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5">
         <div>
-          <h1 className="text-2xl font-bold text-trust-900">Shop Management</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-trust-900">Shop Management</h1>
           <p className="text-xs text-trust-500 mt-0.5">
             Manage business retail locations ({shops.length} active shops)
           </p>
@@ -105,7 +105,7 @@ export const ShopManagement: React.FC = () => {
 
         <button
           onClick={openAddModal}
-          className="px-5 py-2.5 bg-sapphire-600 hover:bg-sapphire-700 text-white font-bold text-xs rounded-xl shadow-sapphire-glow transition-all flex items-center space-x-1.5 shrink-0"
+          className="w-full sm:w-auto px-5 py-2.5 bg-sapphire-600 hover:bg-sapphire-700 text-white font-bold text-xs rounded-xl shadow-sapphire-glow transition-all flex items-center justify-center space-x-1.5 shrink-0"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Shop</span>

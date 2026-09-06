@@ -115,42 +115,42 @@ export const VerificationQueue: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
           {/* Test Admin Notification Button */}
           <button
             type="button"
             onClick={async () => {
               await notifyAdminNewSalesReceived('Main Outlet', 'Staff Demo', 2500);
             }}
-            className="px-3.5 py-2.5 bg-trust-100 text-trust-800 text-xs font-bold rounded-xl hover:bg-trust-200 transition-colors flex items-center space-x-2 border border-trust-200"
+            className="px-3.5 py-2 bg-trust-100 text-trust-800 text-xs font-bold rounded-xl hover:bg-trust-200 transition-colors flex items-center space-x-2 border border-trust-200 shrink-0"
           >
             <Bell className="w-4 h-4 text-emerald-600 animate-bounce" />
-            <span>Test Admin Alert</span>
+            <span>Test Alert</span>
           </button>
 
           {/* Export to Sheets / Excel Button */}
           <button
             type="button"
             onClick={() => setShowExportModal(true)}
-            className="px-4 py-2.5 bg-growth-600 hover:bg-growth-700 text-white font-extrabold rounded-xl text-xs flex items-center space-x-2 shadow-growth-glow transition-all active:scale-95 shrink-0"
+            className="px-3.5 py-2 bg-growth-600 hover:bg-growth-700 text-white font-extrabold rounded-xl text-xs flex items-center space-x-1.5 shadow-growth-glow transition-all active:scale-95 shrink-0"
             title="Export daily sales data with staff photo proof image links to Excel / Google Sheets"
           >
             <FileSpreadsheet className="w-4 h-4" />
-            <span>Export to Sheets / Excel</span>
+            <span>Export Sheets / Excel</span>
           </button>
 
-          {/* Filter Tabs using Color Psychology */}
-          <div className="flex items-center space-x-1.5 bg-trust-100 p-1.5 rounded-xl border border-trust-200">
+          {/* Filter Tabs using Color Psychology - Mobile Horizontal Scroll */}
+          <div className="flex items-center gap-1 bg-trust-100 p-1 rounded-xl border border-trust-200 overflow-x-auto w-full md:w-auto scrollbar-none">
             {[
               { id: 'ALL', label: `All (${salesEntries.length})` },
               { id: 'UNDER_REVIEW', label: `Pending (${pendingCount})`, activeClass: 'bg-focus-600 text-white' },
               { id: 'APPROVED', label: `Approved (${approvedCount})`, activeClass: 'bg-growth-600 text-white' },
-              { id: 'CORRECTION_REQUIRED', label: `Corrections (${correctionCount})`, activeClass: 'bg-urgency-600 text-white' }
+              { id: 'CORRECTION_REQUIRED', label: `Needs Fix (${correctionCount})`, activeClass: 'bg-urgency-600 text-white' }
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setStatusFilter(tab.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
                   statusFilter === tab.id
                     ? tab.activeClass || 'bg-trust-900 text-white shadow-sm'
                     : 'text-trust-600 hover:text-trust-900'

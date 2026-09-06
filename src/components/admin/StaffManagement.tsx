@@ -237,19 +237,19 @@ export const StaffManagement: React.FC = () => {
     <div className="max-w-6xl mx-auto space-y-6 font-sans">
       
       {/* Top Navigation Bar & Sub-Tabs */}
-      <div className="bg-white p-6 rounded-2xl border border-trust-200 shadow-psychology flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-trust-200 shadow-psychology flex flex-col md:flex-row md:items-center md:justify-between gap-3.5">
         <div>
-          <h1 className="text-2xl font-bold text-trust-900">User & Access Management</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-trust-900">User & Access Management</h1>
           <p className="text-xs text-trust-500 mt-0.5">
             Manage Store Staff credentials and Business Admin / Co-Admin portal access.
           </p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 w-full md:w-auto">
           {activeSubTab === 'STAFF' ? (
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-5 py-2.5 bg-growth-600 hover:bg-growth-700 text-white font-bold text-xs rounded-xl shadow-growth-glow transition-all flex items-center space-x-1.5 shrink-0"
+              className="w-full sm:w-auto px-5 py-2.5 bg-growth-600 hover:bg-growth-700 text-white font-bold text-xs rounded-xl shadow-growth-glow transition-all flex items-center justify-center space-x-1.5 shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>Generate Staff Login</span>
@@ -257,7 +257,7 @@ export const StaffManagement: React.FC = () => {
           ) : (
             <button
               onClick={() => setShowAddAdminModal(true)}
-              className="px-5 py-2.5 bg-sapphire-600 hover:bg-sapphire-700 text-white font-bold text-xs rounded-xl shadow-sapphire-glow transition-all flex items-center space-x-1.5 shrink-0"
+              className="w-full sm:w-auto px-5 py-2.5 bg-sapphire-600 hover:bg-sapphire-700 text-white font-bold text-xs rounded-xl shadow-sapphire-glow transition-all flex items-center justify-center space-x-1.5 shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>Add Admin User</span>
@@ -267,29 +267,29 @@ export const StaffManagement: React.FC = () => {
       </div>
 
       {/* Sub-Tab Selector */}
-      <div className="bg-white p-2 rounded-2xl border border-trust-200 shadow-sm flex items-center space-x-2">
+      <div className="bg-white p-1.5 rounded-2xl border border-trust-200 shadow-sm flex items-center gap-1.5 overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveSubTab('STAFF')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all flex items-center justify-center space-x-2 ${
+          className={`flex-1 min-w-[180px] py-2.5 px-3.5 rounded-xl text-xs font-extrabold transition-all flex items-center justify-center space-x-1.5 shrink-0 ${
             activeSubTab === 'STAFF'
               ? 'bg-growth-600 text-white shadow-xs'
               : 'text-trust-600 hover:bg-trust-50'
           }`}
         >
           <Users className="w-4 h-4" />
-          <span>Store Staff Accounts ({staffMembers.length})</span>
+          <span className="truncate">Staff Accounts ({staffMembers.length})</span>
         </button>
 
         <button
           onClick={() => setActiveSubTab('ADMINS')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all flex items-center justify-center space-x-2 ${
+          className={`flex-1 min-w-[180px] py-2.5 px-3.5 rounded-xl text-xs font-extrabold transition-all flex items-center justify-center space-x-1.5 shrink-0 ${
             activeSubTab === 'ADMINS'
               ? 'bg-sapphire-600 text-white shadow-xs'
               : 'text-trust-600 hover:bg-trust-50'
           }`}
         >
           <Shield className="w-4 h-4" />
-          <span>Admin & Manager Accounts ({adminUsers.length})</span>
+          <span className="truncate">Admin Accounts ({adminUsers.length})</span>
         </button>
       </div>
 

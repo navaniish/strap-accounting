@@ -42,13 +42,13 @@ export const StaffSubmissionsView: React.FC = () => {
           <p className="text-xs text-trust-500 mt-1">Logged in as <span className="font-bold text-trust-900">{currentStaff.name}</span> • View status & resubmit receipt proofs</p>
         </div>
 
-        {/* Filter Pills Grid for Mobile & Desktop */}
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1.5 bg-trust-100 p-1.5 rounded-xl text-xs font-bold w-full md:w-auto shrink-0">
+        {/* Filter Pills Container - Mobile Horizontal Scrollable */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 bg-trust-100 p-1.5 rounded-xl text-xs font-bold w-full md:w-auto shrink-0 scrollbar-none">
           {filterTabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setStatusFilter(tab.id)}
-              className={`px-3 py-2 rounded-lg transition-all text-center truncate ${
+              className={`px-3 py-1.5 rounded-lg transition-all text-center shrink-0 whitespace-nowrap ${
                 statusFilter === tab.id 
                   ? 'bg-trust-900 text-white shadow-sm font-extrabold' 
                   : 'text-trust-600 hover:text-trust-900 hover:bg-trust-200/60'
